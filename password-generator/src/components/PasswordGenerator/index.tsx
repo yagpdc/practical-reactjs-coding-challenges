@@ -12,7 +12,15 @@ const PasswordGenerator = () => {
   const [passwordLength, setPasswordLength] = useState<number>(8)
 
   const onChangePasswordLength = (value: number | number[]) => {
-    setPasswordLength(value as number)
+    setPasswordLength(value as number) 
+  }
+
+  function copyFunction(e: any) {
+    e.preventDefault();
+    let copyText = document.getElementById("myInput") as HTMLInputElement;
+    copyText.select();
+    navigator.clipboard.writeText(copyText.value);
+    alert("Copied the text: " + copyText.value);
   }
 
   return (
@@ -28,11 +36,13 @@ const PasswordGenerator = () => {
       </div>
       <div className="password-input-wrapper">
         <div className="password-field">
-          <input type="text" placeholder="your password" value="B9QI4PDBYY" />
+          <input type="text" id='myInput' placeholder="your password" value="B9QI4PDBYY" />
           <Refresh />
         </div>
-        <button className="copy-btn">
-          <Copy /> Copy
+        <button 
+        className="copy-btn"
+        onClick={copyFunction}>
+          <Copy/> Copy
         </button>
       </div>
       <span className="fw-500">Weak</span>
