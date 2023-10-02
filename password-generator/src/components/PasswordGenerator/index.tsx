@@ -7,20 +7,13 @@ import { ReactComponent as Copy } from '../../assets/icons/copy.svg'
 import { ReactComponent as Refresh } from '../../assets/icons/refresh.svg'
 import Checkbox from '../Checkbox'
 import './index.css'
+import copy from '../../controllers'
 
 const PasswordGenerator = () => {
   const [passwordLength, setPasswordLength] = useState<number>(8)
 
   const onChangePasswordLength = (value: number | number[]) => {
     setPasswordLength(value as number) 
-  }
-
-  function copyFunction(e: any) {
-    e.preventDefault();
-    let copyText = document.getElementById("myInput") as HTMLInputElement;
-    copyText.select();
-    navigator.clipboard.writeText(copyText.value);
-    alert("Copied the text: " + copyText.value);
   }
 
   return (
@@ -41,7 +34,7 @@ const PasswordGenerator = () => {
         </div>
         <button 
         className="copy-btn"
-        onClick={copyFunction}>
+        onClick={copy}>
           <Copy/> Copy
         </button>
       </div>
